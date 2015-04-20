@@ -26,34 +26,25 @@ class Baseclass
   end
 
   def click_radio_button(locator)
-    browser.radio(locator).click
+    browser.set(locator)
   end
 
-
-  #def find(locator)
-  #  browser.find_element locator
-  #end
-  #
-  #def clear(locator)
-  #  browser(locator).clear
-  #end
-  #
-  #def type(locator, input)
-  #  find(locator => input)
-  #end
+  def clear(locator)
+    browser.clear(locator)
+  end
 
   #def click_on(locator)
   #  find(locator).click
   #end
   #
-  #def displayed?(locator)
-  #  browser.find_element(locator).displayed?
-  #end
-  #
-  #def enabled?(locator)
-  #  browser.find_element(locator).enabled?
-  #end
-  #
+  def displayed?(locator)
+    browser(locator).exists?
+  end
+
+  def enabled?(locator)
+    browser(locator).enabled?
+  end
+
   #def selected?(locator)
   #  browser.find_element(locator).selected?
   #end
@@ -62,22 +53,22 @@ class Baseclass
   #  find(locator).text
   #end
   #
-  #def title
-  #  browser.title
-  #end
-  #
-  #def page_content
-  #  browser.page_source
-  #end
-  #
-  #def click_within_drop_down_list(locator, text)
-  #
-  #  element = browser.find_element(locator)
-  #  dropdown = Selenium::WebDriver::Support::Select.new(element)
-  #  dropdown.select_by(:text, text)
-  #
-  #end
-  #
+  def title(name)
+    browser.title == name
+  end
+
+  def page_content(content)
+    browser.text.include? content
+  end
+
+  def click_within_drop_down_list(locator, text)
+    browser.select_list(locator.to_sym, text)
+  end
+
+  def clear_drop_down_list(locator)
+    broswer.clearSelection(locator)
+  end
+
   #def get_attribute(name, locator)
   #  browser.find_element(locator)
   #  browser.attribute(name)
