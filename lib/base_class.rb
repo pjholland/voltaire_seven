@@ -25,6 +25,10 @@ class Baseclass
     browser.a(locator).click
   end
 
+  def click_radio_button(locator)
+    browser.radio(locator).click
+  end
+
 
   #def find(locator)
   #  browser.find_element locator
